@@ -16,10 +16,10 @@ let FONT_GAP = 15
 let TEXT_WIDTH = 50
 
 /* ---- Переменные для гистаграммы ----*/
-let GISTAGRAMM_WIDTH = 150
-let GISTAGRAMM_HEIGHT = 20
-let GISTAGRAMM_Y = 100
-let GISTAGRAMM_GAP = 50
+let BAR_WIDTH = CLOUD_WIDTH - GAP * 2 - TEXT_WIDTH // Расчет длины полоски гистаграммы
+let BAR_HEIGHT = 20 // ширина полоски гистаграммы
+let BAR_Y = 100 // Координата полоски гистаграммы по Y
+let BAR_GAP = 50 // Расстояние между полосками гистаграммы
 
 
 
@@ -28,7 +28,7 @@ let renderCloud = function (ctx, x, y, color) {
     ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 }
 
-window.renderStatistics = function (ctx) {
+window.renderStatistics = function (ctx, players) {
     renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.3)')
     renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff')
     ctx.textBaseline = 'top'
@@ -37,17 +37,10 @@ window.renderStatistics = function (ctx) {
     ctx.fillText("Ура, вы победили!", CLOUD_X + GAP, MESSAGE_WIN_Y);
     ctx.fillText("Список результатов:", CLOUD_X + GAP, MESSAGE_WIN_Y + MESSAGE_WIN_GAP);
 
-    ctx.fillText('Вы', CLOUD_X + GAP, GISTAGRAMM_Y)
-    ctx.fillRect(CLOUD_X + GAP + TEXT_WIDTH, GISTAGRAMM_Y, GISTAGRAMM_WIDTH, GISTAGRAMM_HEIGHT)
+    for (let i = 0; i < players.length; i++) {
+        ctx.fillText(players[i], CLOUD_X + GAP, BAR_Y + BAR_GAP * i)
+        ctx.fillRect(CLOUD_X + GAP + TEXT_WIDTH, BAR_Y + BAR_GAP * i, BAR_WIDTH, BAR_HEIGHT)
+    }
 
-    ctx.fillText('Кекс', CLOUD_X + GAP, GISTAGRAMM_Y + GISTAGRAMM_GAP)
-    ctx.fillRect(CLOUD_X + GAP + TEXT_WIDTH, GISTAGRAMM_Y + GISTAGRAMM_GAP, GISTAGRAMM_WIDTH, GISTAGRAMM_HEIGHT)
-
-    ctx.fillText('Катя', CLOUD_X + GAP, GISTAGRAMM_Y + GISTAGRAMM_GAP * 2)
-    ctx.fillRect(CLOUD_X + GAP + TEXT_WIDTH, GISTAGRAMM_Y + GISTAGRAMM_GAP * 2, GISTAGRAMM_WIDTH, GISTAGRAMM_HEIGHT)
-
-    ctx.fillText('Игорь', CLOUD_X + GAP, GISTAGRAMM_Y + GISTAGRAMM_GAP * 3)
-    ctx.fillRect(CLOUD_X + GAP + TEXT_WIDTH, GISTAGRAMM_Y + GISTAGRAMM_GAP * 3, GISTAGRAMM_WIDTH, GISTAGRAMM_HEIGHT)
-
-
+    
 }
