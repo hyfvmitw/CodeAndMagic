@@ -39,13 +39,15 @@ let getMaxElement = function (arr) {
 
 let getMinElement = function (arr) {
     let minElement = arr[0]
+    let winElement = 0
     for (let i = 0; i < arr.length; i++)
         if (arr[i] < minElement) {
             minElement = arr[i]
+            winElement = i
         }
-    return minElement
+    return [minElement, winElement]
 }
-
+    
 
 
 window.renderStatistics = function (ctx, players, times) {
@@ -55,14 +57,17 @@ window.renderStatistics = function (ctx, players, times) {
     ctx.fillStyle = FONT_COLOR
     ctx.font = FONT_FAMILY
 
-    let minTime = Math.round(getMinElement(times))
-    console.log('minTime = ' + minTime);   
-
-    ctx.fillText("Ура, вы победили!", CLOUD_X + GAP, MESSAGE_WIN_Y);
-    ctx.fillText("Список результатов:", CLOUD_X + GAP, MESSAGE_WIN_Y + MESSAGE_WIN_GAP);
+    let winner = getMinElement(times)
     
+    let winnerTime = winner[0]
+    let winnerPlayer = winner[1]
+    let winnerName = players[winnerPlayer]
+    // let minTime = Math.round(winnerTime)
+
+    ctx.fillText('В этот раз победитель: ' + winnerName, CLOUD_X + GAP, MESSAGE_WIN_Y);
+    ctx.fillText("Список результатов:", CLOUD_X + GAP, MESSAGE_WIN_Y + MESSAGE_WIN_GAP);
+
     let maxTime = Math.round(getMaxElement(times))
-    console.log('maxTime = ' + maxTime);   
 
     for (let i = 0; i < players.length; i++) {
         ctx.fillText(players[i], CLOUD_X + GAP, BAR_Y + BAR_GAP * i)
