@@ -20,7 +20,7 @@ let = randonFamilyName = ['да Марья', 'Верон', 'Мирабелла',
 
 /* ------ Генератор массива из случайных чисел от min до max ----------- */
 let min = 0
-let max = 8
+let max = 7
 let similarWizardArr = []
 for (let i = 0; i <= 3; i++) {
     randomNumber = Math.floor(Math.random() * (max - min + 1)) + min
@@ -32,17 +32,22 @@ console.log(similarWizardArr);
 
 /* ------ Генератор свойства name объектов ----------- */
 
+let randomWizard = []
+for (i = 0; i <= 3; i++) {
+    randomWizard.push(randonName[similarWizardArr[i]] + ' ' + randonFamilyName[similarWizardArr[i]])
+}
+console.log(randomWizard);
 
 
+// let similarWizard = []
+//     for (i = 0; i <= 3; i++) {
+//         similarWizard[i].name = randomWizard[i]
 
-let similarWizard = [
-    {
-        name: '',
-        coatColor: '',
-        eyesColor: '',
-
-    }
+// }
 
 
+// console.log(similarWizard);
 
-]
+// similarWizard[1].name = 'Андрей'
+
+// console.log(similarWizard[1].name);
