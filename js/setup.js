@@ -3,34 +3,30 @@ let setup = document.querySelector('.setup')
 
 
 /* Генератор случайных чисел от min до max 
-
 let min = 0
 let max = 8
 let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min
 console.log('Случайное число = ' + randomNumber);
-
 */
 
 let = randonName = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон']
 let = randonFamilyName = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг']
-
-// console.log(randonName[1]);
-// console.log(randonFamilyName[1]);
-// console.log('Имя и фамилия случайного волшебника: ' + randonName[randomNumber] + ' ' + randonFamilyName[randomNumber]);
+let coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)','rgb(215, 210, 55)', 'rgb(0, 0, 0)']
+let eyesColor = ['black', 'red', 'blue', 'yellow', 'green']
 
 /* ------ Генератор массива из случайных чисел от min до max ----------- */
 let min = 0
 let max = 7
 let similarWizardArr = []
-for (let i = 0; i <= 3; i++) {
+for (let i = 0; similarWizardArr.length < 4; i++) {
     randomNumber = Math.floor(Math.random() * (max - min + 1)) + min
-    if (similarWizardArr.indexOf(randomNumber)) {
+    if (!similarWizardArr.includes(randomNumber)) {
         similarWizardArr.push(randomNumber);
     }
 }
 console.log(similarWizardArr);
 
-/* ------ Генератор свойства name объектов ----------- */
+/* --- Генератор массива имен персонажей на основе массива из случайных чисел для свойства name объектов --- */
 
 let randomWizard = []
 for (i = 0; i <= 3; i++) {
@@ -38,16 +34,68 @@ for (i = 0; i <= 3; i++) {
 }
 console.log(randomWizard);
 
+/* --- Генератор массива цвет мантии персонажей на основе массива из случайных чисел для свойства coatColor объектов --- */
 
-// let similarWizard = []
-//     for (i = 0; i <= 3; i++) {
-//         similarWizard[i].name = randomWizard[i]
+let min1 = 0
+let max1 = 5
+let coatColorWizardArr = []
+for (let i = 0; coatColorWizardArr.length < 4; i++) {
+    randomNumber1 = Math.floor(Math.random() * (max1 - min1 + 1)) + min1
+    if (!coatColorWizardArr.includes(randomNumber1)) {
+        coatColorWizardArr.push(randomNumber1);
+    }
+}
+console.log(coatColorWizardArr);
 
-// }
+let randomCoatColorWizard = []
+for (i = 0; i <= 3; i++) {
+    randomCoatColorWizard.push(coatColor[coatColorWizardArr[i]])
+}
+console.log(randomCoatColorWizard);
+
+/* --- Генератор массива цвет глаз персонажей на основе массива из случайных чисел для свойства eyesColor объектов --- */
+
+let min2 = 0
+let max2 = 4
+let eyesColorWizardArr = []
+for (let i = 0; eyesColorWizardArr.length < 4; i++) {
+    randomNumber2 = Math.floor(Math.random() * (max2 - min2 + 1)) + min2
+    if (!eyesColorWizardArr.includes(randomNumber2)) {
+        eyesColorWizardArr.push(randomNumber2);
+    }
+}
+console.log(eyesColorWizardArr);
+
+let randomEyesColorWizard = []
+for (i = 0; i <= 3; i++) {
+    randomEyesColorWizard.push(eyesColor[eyesColorWizardArr[i]])
+}
+console.log(randomEyesColorWizard);
+
+/* --- Массив, состоящий из 4 сгенерированных JS объектов, которые будут описывать похожих персонажей --- */
+
+let similarWizard = [
+    {
+        name: randomWizard[0],
+        coatColor: randomCoatColorWizard[0],
+        eyesColor: randomEyesColorWizard[0]
+    },
+    {
+        name: randomWizard[1],
+        coatColor: randomCoatColorWizard[1],
+        eyesColor: randomEyesColorWizard[1]
+    },
+    {
+        name: randomWizard[2],
+        coatColor: randomCoatColorWizard[2],
+        eyesColor: randomEyesColorWizard[2]
+    },
+    {
+        name: randomWizard[3],
+        coatColor: randomCoatColorWizard[3],
+        eyesColor: randomEyesColorWizard[3]
+    }
 
 
-// console.log(similarWizard);
-
-// similarWizard[1].name = 'Андрей'
-
-// console.log(similarWizard[1].name);
+]
+console.log(similarWizard);
