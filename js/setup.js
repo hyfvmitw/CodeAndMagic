@@ -1,5 +1,7 @@
 let setup = document.querySelector('.setup')
-// setup.classList.remove('hidden') 
+setup.classList.remove('hidden') 
+let setupSimilar = document.querySelector('.setup-similar')
+setupSimilar.classList.remove('hidden') 
 
 
 /* Генератор случайных чисел от min до max 
@@ -24,7 +26,7 @@ for (let i = 0; similarWizardArr.length < 4; i++) {
         similarWizardArr.push(randomNumber);
     }
 }
-console.log(similarWizardArr);
+// console.log(similarWizardArr);
 
 /* --- Генератор массива имен персонажей на основе массива из случайных чисел для свойства name объектов --- */
 
@@ -32,7 +34,7 @@ let randomWizard = []
 for (i = 0; i <= 3; i++) {
     randomWizard.push(randonName[similarWizardArr[i]] + ' ' + randonFamilyName[similarWizardArr[i]])
 }
-console.log(randomWizard);
+// console.log(randomWizard);
 
 /* --- Генератор массива цвет мантии персонажей на основе массива из случайных чисел для свойства coatColor объектов --- */
 
@@ -45,13 +47,13 @@ for (let i = 0; coatColorWizardArr.length < 4; i++) {
         coatColorWizardArr.push(randomNumber1);
     }
 }
-console.log(coatColorWizardArr);
+// console.log(coatColorWizardArr);
 
 let randomCoatColorWizard = []
 for (i = 0; i <= 3; i++) {
     randomCoatColorWizard.push(coatColor[coatColorWizardArr[i]])
 }
-console.log(randomCoatColorWizard);
+// console.log(randomCoatColorWizard);
 
 /* --- Генератор массива цвет глаз персонажей на основе массива из случайных чисел для свойства eyesColor объектов --- */
 
@@ -64,13 +66,13 @@ for (let i = 0; eyesColorWizardArr.length < 4; i++) {
         eyesColorWizardArr.push(randomNumber2);
     }
 }
-console.log(eyesColorWizardArr);
+// console.log(eyesColorWizardArr);
 
 let randomEyesColorWizard = []
 for (i = 0; i <= 3; i++) {
     randomEyesColorWizard.push(eyesColor[eyesColorWizardArr[i]])
 }
-console.log(randomEyesColorWizard);
+// console.log(randomEyesColorWizard);
 
 /* --- Массив, состоящий из 4 сгенерированных JS объектов, которые будут описывать похожих персонажей --- */
 
@@ -95,7 +97,22 @@ let similarWizard = [
         coatColor: randomCoatColorWizard[3],
         eyesColor: randomEyesColorWizard[3]
     }
-
-
 ]
-console.log(similarWizard);
+// console.log(similarWizard);
+
+/* --- Создание отрисовки случайно сгенерированных волшебников --- */
+
+let template = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item')
+let similarList = document.querySelector('.setup-similar-list')
+
+for (let i = 0; i < similarWizard.length; i++) {
+let wizardElement = template.cloneNode(true);
+similarList.appendChild(wizardElement)
+wizardElement.querySelector('.setup-similar-label').textContent = similarWizard[i].name
+wizardElement.querySelector('.wizard-coat').style.fill = similarWizard[i].coatColor
+wizardElement.querySelector('.wizard-eyes').style.fill = similarWizard[i].eyesColor
+}
+
+
+console.log(template);
+console.log(similarList);
