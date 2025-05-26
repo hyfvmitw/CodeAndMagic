@@ -1,8 +1,8 @@
 /* ---- Переменные для облака ----*/
 
 let CLOUD_WIDTH = 420;  // Ширина облака
-let CLOUD_HEIGHT = 300; // Высота облака
-let CLOUD_X = 150; // Координата X облака
+let CLOUD_HEIGHT = 270; // Высота облака
+let CLOUD_X = 100; // Координата X облака
 let CLOUD_Y = 10; // Координата Y облака
 let GAP = 10;  // смещение тени облака
 
@@ -59,17 +59,28 @@ window.renderStatistics = function (ctx, players, times) {
 
     let winner = getMinElement(times)
     
-    let winnerTime = winner[0]
+    
     let winnerPlayer = winner[1]
     let winnerName = players[winnerPlayer]
+    
+    // let winnerTime = winner[0]
     // let minTime = Math.round(winnerTime)
 
     ctx.fillText('В этот раз победитель: ' + winnerName, CLOUD_X + GAP, MESSAGE_WIN_Y);
     ctx.fillText("Список результатов:", CLOUD_X + GAP, MESSAGE_WIN_Y + MESSAGE_WIN_GAP);
 
     let maxTime = Math.round(getMaxElement(times))
+    
+    
 
+    
+    
     for (let i = 0; i < players.length; i++) {
+        if (players[i] == 'Вы') {
+            ctx.fillStyle = 'rgba(255, 0, 0, 1)'
+        } else {
+            ctx.fillStyle = 'blue'
+        }
         ctx.fillText(players[i], CLOUD_X + GAP, BAR_Y + BAR_GAP * i)
         ctx.fillRect(CLOUD_X + GAP + TEXT_WIDTH, BAR_Y + BAR_GAP * i, (BAR_WIDTH * times[i]) / maxTime, BAR_HEIGHT)
     }
