@@ -1,5 +1,32 @@
+let ESC_KEYCODE = 27;
+let ENTER_KEYCODE = 13;
+
 let setup = document.querySelector('.setup')
-setup.classList.remove('hidden')
+let setupOpen = document.querySelector('.setup-open')
+let setupClose = setup.querySelector('.setup-close')
+let setupOpenIcon = document.querySelector('.setup-open-icon')
+setupOpenIcon.tabIndex = '0' // tabindex = "0" для иконки пользователя, чтобы она фокусировалась.
+
+/* --- Открытие окна настройки персонажа --- */
+
+setupOpen.addEventListener('click', function(){
+    setup.classList.remove('hidden')
+}) 
+
+setupOpenIcon.addEventListener('keydown', function(evt){
+    if(evt.key === ENTER_KEYCODE) {
+        setupOpen.classList.remove('hidden')
+    }
+    
+}) 
+
+setupClose.addEventListener('click', function(){
+    setup.classList.add('hidden')
+}) 
+/* --- Открытие/закрытие окна настройки персонажа --- */
+
+
+
 let setupSimilar = document.querySelector('.setup-similar')
 setupSimilar.classList.remove('hidden')
 
@@ -140,3 +167,5 @@ let similarWizards = function(wizards) {
 }
 }
 similarWizards(wizards)
+
+/* ---------- Обработчики событий -------------- */
