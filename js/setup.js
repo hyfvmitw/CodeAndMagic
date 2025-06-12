@@ -6,25 +6,28 @@ let setupOpen = document.querySelector('.setup-open')
 let setupClose = setup.querySelector('.setup-close')
 let setupOpenIcon = document.querySelector('.setup-open-icon')
 setupOpenIcon.tabIndex = '0' // tabindex = "0" для иконки пользователя, чтобы она фокусировалась.
+// document.addEventListener('keydown', (evt) => setup.classList.remove('hidden'))  
 
 /* --- Открытие окна настройки персонажа --- */
 
 setupOpen.addEventListener('click', function(){
     setup.classList.remove('hidden')
 }) 
+// setupOpen.addEventListener('click', function(){
+//     setup.classList.remove('hidden')
+// }) 
 
-setupOpenIcon.addEventListener('keydown', function(evt){
-    if(evt.key === ENTER_KEYCODE) {
-        setupOpen.classList.remove('hidden')
-    }
+document.addEventListener('keydown', function(evt){
+    setupOpen.classList.remove('hidden')
     
 }) 
+
+
+/* --- Закрытие окна настройки персонажа --- */
 
 setupClose.addEventListener('click', function(){
     setup.classList.add('hidden')
 }) 
-/* --- Открытие/закрытие окна настройки персонажа --- */
-
 
 
 let setupSimilar = document.querySelector('.setup-similar')
