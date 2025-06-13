@@ -1,33 +1,55 @@
-let ESC_KEYCODE = 27;
-let ENTER_KEYCODE = 13;
+let ESC_KEYCODE = 'Escape';
+let ENTER_KEYCODE = 'Enter';
 
 let setup = document.querySelector('.setup')
 let setupOpen = document.querySelector('.setup-open')
 let setupClose = setup.querySelector('.setup-close')
+setupClose.tabIndex = '0' // tabindex = "0" для крестика закрытия окна, чтобы он фокусировался.
 let setupOpenIcon = document.querySelector('.setup-open-icon')
 setupOpenIcon.tabIndex = '0' // tabindex = "0" для иконки пользователя, чтобы она фокусировалась.
-// document.addEventListener('keydown', (evt) => setup.classList.remove('hidden'))  
+
+let onPopupEscPress = function (evt) {
+    if (evt.key === ESC_KEYCODE) {
+        closePopup();
+    }
+}
 
 /* --- Открытие окна настройки персонажа --- */
 
-setupOpen.addEventListener('click', function(){
+let openPopup = function () {
     setup.classList.remove('hidden')
-}) 
-// setupOpen.addEventListener('click', function(){
-//     setup.classList.remove('hidden')
-// }) 
+    document.addEventListener('keydown', onPopupEscPress)
+}
 
-document.addEventListener('keydown', function(evt){
-    setupOpen.classList.remove('hidden')
-    
-}) 
+setupOpen.addEventListener('click', function () {
+    openPopup()
+})
+
+setupOpen.addEventListener('keydown', function (evt) {
+    if (evt.key === ENTER_KEYCODE) {
+        openPopup()
+    }
+})
 
 
 /* --- Закрытие окна настройки персонажа --- */
 
-setupClose.addEventListener('click', function(){
+let closePopup = function () {
     setup.classList.add('hidden')
-}) 
+    document.removeEventListener('keydown', onPopupEscPress);
+}
+
+setupClose.addEventListener('click', function () {
+    closePopup()
+})
+
+setupClose.addEventListener('keydown', function (evt) {
+    if (evt.key === ENTER_KEYCODE) {
+        closePopup()
+    }
+})
+
+
 
 
 let setupSimilar = document.querySelector('.setup-similar')
@@ -50,8 +72,8 @@ let eyesColor = ['black', 'red', 'blue', 'yellow', 'green']
 
 /* --- Функция возвращающая массив случайного имени и фамилии волшебника --- */
 
-let randomNameWizards = function(name, familyName) {
-/* --- Генератор массива из случайных чисел от 0 до длины массива на входе --- */
+let randomNameWizards = function (name, familyName) {
+    /* --- Генератор массива из случайных чисел от 0 до длины массива на входе --- */
     let lengthArrName = name.length - 1
     let minIndexArrName = 0
     let maxIndexArrName = lengthArrName
@@ -74,7 +96,7 @@ randomNameWizards(randomName, randomFamilyName)
 
 /* --- Функция возвращающая массив случайных цветов мантии волшебника --- */
 
-let randomCoatColorWizards = function(coatColor) {
+let randomCoatColorWizards = function (coatColor) {
     /* --- Генератор массива из случайных чисел от 0 до длины массива на входе --- */
     let lengthArrCoatColor = coatColor.length - 1
     let minIndexArrCoatColor = 0
@@ -92,14 +114,14 @@ let randomCoatColorWizards = function(coatColor) {
         randomCoatColorWizard.push(coatColor[coatColorWizardArr[i]])
     }
     return randomCoatColorWizard
-    
+
 }
 randomCoatColorWizards(coatColor)
 // console.log(randomCoatColor(coatColor)); 
 
 /* --- Функция возвращающая массив случайных цветов цвета глаз волшебника --- */
 
-let randomEyesColorWizards = function(eyesColor) {
+let randomEyesColorWizards = function (eyesColor) {
     /* --- Генератор массива из случайных чисел от 0 до длины массива на входе --- */
     let lengthArrEyesColor = eyesColor.length - 1
     let minIndexArrEyesColor = 0
@@ -123,7 +145,7 @@ randomEyesColorWizards(eyesColor)
 
 /* --- Функция возвращающая массив случайных похожих волшебников --- */
 
-let similarWizard = function(name, coatColor, eyesColor) {
+let similarWizard = function (name, coatColor, eyesColor) {
     let similarWizard = [
         {
             name: name[0],
@@ -145,7 +167,7 @@ let similarWizard = function(name, coatColor, eyesColor) {
             coatColor: coatColor[3],
             eyesColor: eyesColor[3]
         },
-        
+
     ]
     return similarWizard
 }
@@ -160,14 +182,14 @@ let similarList = document.querySelector('.setup-similar-list')
 
 /* --- Функция возвращающая отрисовку случайно сгенерированных волшебников --- */
 
-let similarWizards = function(wizards) {
+let similarWizards = function (wizards) {
     for (let i = 0; i < wizards.length; i++) {
-    let wizardElement = template.cloneNode(true);
-    similarList.appendChild(wizardElement)
-    wizardElement.querySelector('.setup-similar-label').textContent = wizards[i].name
-    wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor
-}
+        let wizardElement = template.cloneNode(true);
+        similarList.appendChild(wizardElement)
+        wizardElement.querySelector('.setup-similar-label').textContent = wizards[i].name
+        wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor
+        wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor
+    }
 }
 similarWizards(wizards)
 
