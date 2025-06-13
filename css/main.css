@@ -31,7 +31,7 @@ button {
 
 *[tabindex]:focus, button:focus, input:focus {
   outline: none;
-  box-shadow: 0 0 10px #fff000;
+  box-shadow: 0 0 20px #fff000;
 }
 
 form {
@@ -586,6 +586,7 @@ input[type=radio]:checked + .review-mark-label {
 .setup-open-icon:hover {
   box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
 }
+
 
 .setup-title {
   padding: 20px;
