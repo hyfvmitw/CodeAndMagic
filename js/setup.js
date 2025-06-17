@@ -14,6 +14,7 @@ let = randomName = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 let = randomFamilyName = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг']
 let coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)']
 let eyesColor = ['black', 'red', 'blue', 'yellow', 'green']
+let fireballColor = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
 
 /* --- Функция возвращающая массив случайного имени и фамилии волшебника --- */
 
@@ -194,15 +195,46 @@ setupClose.addEventListener('keydown', function (evt) {
 /* --- Изменение цвета мантии персонажа по нажатию --- */
 
 let wizardCoat = document.querySelector('.wizard-coat')
-console.log(coatColor.length);
+let coatColorInput = document.getElementsByName('coat-color')
+// console.log(coatColorInput);
+// console.log(coatColorInput[0].value)
+
 wizardCoat.addEventListener('click', function () {
     let min = 0
     let max = coatColor.length - 1
     let randomCoatColor = Math.floor(Math.random() * (max - min + 1)) + min
     wizardCoat.style.fill = coatColor[randomCoatColor]
-    console.log(wizardCoat.style.fill);
+    coatColorInput[0].value = coatColor[randomCoatColor]
+
+    // console.log(wizardCoat.style.fill);
+    // console.log(coatColorInput[0].value);
 })
 
+/* --- Изменение цвета глаз персонажа по нажатию --- */
 
+let wizardEyes = document.querySelector('.wizard-eyes')
+let eyesColorInput = document.getElementsByName('eyes-color')
 
+wizardEyes.addEventListener('click', function () {
+    let min = 0
+    let max = eyesColor.length - 1
+    let randomEyesColor = Math.floor(Math.random() * (max - min + 1)) + min
+    wizardEyes.style.fill = eyesColor[randomEyesColor]
+    eyesColorInput[0].value = eyesColor[randomEyesColor]
+    // console.log(wizardEyes.style.fill);
+})
+
+/* --- Изменение цвета фаерболов по нажатию --- */
+
+let setupFireballWrap = document.querySelector('.setup-fireball-wrap')
+let fireballColorInput = document.getElementsByName('fireball-color')
+
+setupFireballWrap.addEventListener('click', function () {
+    let min = 0
+    let max = fireballColor.length - 1
+    let randomFireballColor = Math.floor(Math.random() * (max - min + 1)) + min
+    setupFireballWrap.style.background = fireballColor[randomFireballColor]
+    fireballColorInput[0].value = fireballColor[randomFireballColor]
+    // console.log(setupFireballWrap.style.background);
+})
 
