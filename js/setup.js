@@ -1,61 +1,5 @@
-let ESC_KEYCODE = 'Escape';
-let ENTER_KEYCODE = 'Enter';
-
-let setup = document.querySelector('.setup')
-let setupOpen = document.querySelector('.setup-open')
-let setupClose = setup.querySelector('.setup-close')
-let setupOpenIcon = document.querySelector('.setup-open-icon')
-
-
-/* --- Открытие окна настройки персонажа --- */
-
-let openPopup = function () {
-    setup.classList.remove('hidden')
-    document.addEventListener('keydown', onPopupEscPress)
-}
-
-setupOpen.addEventListener('click', function () {
-    openPopup()
-})
-
-setupOpen.addEventListener('keydown', function (evt) {
-    if (evt.key === ENTER_KEYCODE) {
-        openPopup()
-    }
-})
-
-
-/* --- Закрытие окна настройки персонажа --- */
-let setupUserName = document.querySelector('.setup-user-name')
-let onPopupEscPress = function (evt) {
-    if (evt.key === ESC_KEYCODE && setupUserName !== document.activeElement)  {
-        closePopup();
-    }
-}
-
-let closePopup = function () {
-    setup.classList.add('hidden')
-    document.removeEventListener('keydown', onPopupEscPress);
-}
-
-setupClose.addEventListener('click', function () {
-    closePopup()
-})
-
-setupClose.addEventListener('keydown', function (evt) {
-    if (evt.key === ENTER_KEYCODE) {
-        closePopup()
-    }
-})
-
-
-
-
-
-
 let setupSimilar = document.querySelector('.setup-similar')
 setupSimilar.classList.remove('hidden')
-
 
 /* Генератор случайных чисел от min до max 
 let min = 0
@@ -95,7 +39,7 @@ let randomNameWizards = function (name, familyName) {
 randomNameWizards(randomName, randomFamilyName)
 // console.log(randomWizard(randomName, randomFamilyName));
 
-/* --- Функция возвращающая массив случайных цветов мантии волшебника --- */
+/* --- Функция возвращающая в массив случайные 4 цвета для мантии волшебника --- */
 
 let randomCoatColorWizards = function (coatColor) {
     /* --- Генератор массива из случайных чисел от 0 до длины массива на входе --- */
@@ -118,7 +62,7 @@ let randomCoatColorWizards = function (coatColor) {
 
 }
 randomCoatColorWizards(coatColor)
-// console.log(randomCoatColor(coatColor)); 
+// console.log(randomCoatColorWizards(coatColor)); 
 
 /* --- Функция возвращающая массив случайных цветов цвета глаз волшебника --- */
 
@@ -195,3 +139,70 @@ let similarWizards = function (wizards) {
 similarWizards(wizards)
 
 /* ---------- Обработчики событий -------------- */
+
+let ESC_KEYCODE = 'Escape';
+let ENTER_KEYCODE = 'Enter';
+
+let setup = document.querySelector('.setup')
+let setupOpen = document.querySelector('.setup-open')
+let setupClose = setup.querySelector('.setup-close')
+let setupOpenIcon = document.querySelector('.setup-open-icon')
+
+
+/* --- Открытие окна настройки персонажа --- */
+
+let openPopup = function () {
+    setup.classList.remove('hidden')
+    document.addEventListener('keydown', onPopupEscPress)
+}
+
+setupOpen.addEventListener('click', function () {
+    openPopup()
+})
+
+setupOpen.addEventListener('keydown', function (evt) {
+    if (evt.key === ENTER_KEYCODE) {
+        openPopup()
+    }
+})
+
+
+/* --- Закрытие окна настройки персонажа --- */
+
+let setupUserName = document.querySelector('.setup-user-name')
+let onPopupEscPress = function (evt) {
+    if (evt.key === ESC_KEYCODE && setupUserName !== document.activeElement) {
+        closePopup();
+    }
+}
+
+let closePopup = function () {
+    setup.classList.add('hidden')
+    document.removeEventListener('keydown', onPopupEscPress);
+}
+
+setupClose.addEventListener('click', function () {
+    closePopup()
+})
+
+setupClose.addEventListener('keydown', function (evt) {
+    if (evt.key === ENTER_KEYCODE) {
+        closePopup()
+    }
+})
+
+/* --- Изменение цвета мантии персонажа по нажатию --- */
+
+let wizardCoat = document.querySelector('.wizard-coat')
+console.log(coatColor.length);
+wizardCoat.addEventListener('click', function () {
+    let min = 0
+    let max = coatColor.length - 1
+    let randomCoatColor = Math.floor(Math.random() * (max - min + 1)) + min
+    wizardCoat.style.fill = coatColor[randomCoatColor]
+    console.log(wizardCoat.style.fill);
+})
+
+
+
+
