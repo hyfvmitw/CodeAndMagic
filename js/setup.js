@@ -4,15 +4,8 @@ let ENTER_KEYCODE = 'Enter';
 let setup = document.querySelector('.setup')
 let setupOpen = document.querySelector('.setup-open')
 let setupClose = setup.querySelector('.setup-close')
-setupClose.tabIndex = '0' // tabindex = "0" для крестика закрытия окна, чтобы он фокусировался.
 let setupOpenIcon = document.querySelector('.setup-open-icon')
-setupOpenIcon.tabIndex = '0' // tabindex = "0" для иконки пользователя, чтобы она фокусировалась.
 
-let onPopupEscPress = function (evt) {
-    if (evt.key === ESC_KEYCODE) {
-        closePopup();
-    }
-}
 
 /* --- Открытие окна настройки персонажа --- */
 
@@ -33,6 +26,12 @@ setupOpen.addEventListener('keydown', function (evt) {
 
 
 /* --- Закрытие окна настройки персонажа --- */
+let setupUserName = document.querySelector('.setup-user-name')
+let onPopupEscPress = function (evt) {
+    if (evt.key === ESC_KEYCODE && setupUserName !== document.activeElement)  {
+        closePopup();
+    }
+}
 
 let closePopup = function () {
     setup.classList.add('hidden')
@@ -48,6 +47,8 @@ setupClose.addEventListener('keydown', function (evt) {
         closePopup()
     }
 })
+
+
 
 
 
